@@ -1,0 +1,121 @@
+﻿<local:Inv365Sortable x:Class="Invoice365.Inventory" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+     xmlns:local="clr-namespace:Invoice365" Title="{lex:LocText Invoice365:Inventory:Inventory1}"
+     HorizontalAlignment="Center" Initialized="Window_Initialized" xmlns:lex="http://schemas.root-project.org/xaml/presentation">
+    <local:Inv365Sortable.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+    </local:Inv365Sortable.Resources>
+    <Viewbox VerticalAlignment="Top" HorizontalAlignment="Center" Stretch="Fill">
+        <Grid Height="585" Width="959" ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0*" />
+                <ColumnDefinition Width="388*" />
+                <ColumnDefinition Width="91*" />
+                <ColumnDefinition Width="480*" />
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="1" Margin="7,33,123,0" Name="rectangle1" Stroke="Black" Height="174"
+                 VerticalAlignment="Top" Grid.ColumnSpan="3" Fill="#FFFFFF" />
+            <Rectangle Fill="SteelBlue" Grid.Column="1" Grid.ColumnSpan="3" Margin="7,9,123,552"
+                 Name="rectangle2" OpacityMask="#FF318E8E" Stroke="Black" />
+            <ListView GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler" Margin="5,222,123,35"
+                 Name="invView" ClipToBounds="True" AllowDrop="True" Grid.IsSharedSizeScope="True"
+                 Background="Transparent" BorderThickness="2" BorderBrush="SlateGray" Grid.ColumnSpan="3"
+                 Grid.Column="1" SelectionChanged="invView_SelectionChanged" FontFamily="Arial" FontSize="14">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="100" Header="{lex:LocText Invoice365:Inventory:ItemCode}" />
+                        <GridViewColumn Header="{lex:LocText Invoice365:Inventory:Item}" Width="140" />
+                        <GridViewColumn Header="{lex:LocText Invoice365:Inventory:Vendor}" Width="140" />
+                        <!--<GridViewColumn Width="140" Header="Barcode" />-->
+                        <GridViewColumn Header="{lex:LocText Invoice365:Inventory:Qty}" Width="80" />
+                        <!--<GridViewColumn Header="Individual Qty" Width="100" />-->
+                        <GridViewColumn Header="{lex:LocText Invoice365:Inventory:PriceBuy}" Width="80" />
+                        <GridViewColumn Header="{lex:LocText Invoice365:Inventory:PriceSell}" Width="80" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Height="20" Margin="0,10,477,0" Name="label1" VerticalAlignment="Top" FontSize="12"
+                 FontWeight="Bold" Foreground="White" Grid.Column="1" HorizontalAlignment="Right" Width="116"
+                 Grid.ColumnSpan="3" Content="{lex:LocText Invoice365:Inventory:AddInventory}">
+            </Label>
+            <Label FontWeight="Bold" Foreground="Black" Height="27.775" HorizontalAlignment="Left"
+                 Margin="15,66,0,0" Name="label2" VerticalAlignment="Top" Width="47" Grid.Column="1"
+                 Content="{lex:LocText Invoice365:Inventory:ItemNo}">
+            </Label>
+            <Label FontWeight="Bold" Foreground="Black" Height="28" Margin="22,66,0,0" Name="Itemcodelbl"
+                 VerticalAlignment="Top" Grid.Column="2" HorizontalAlignment="Left" Width="40.969">
+                <LocText ResourceIdentifierKey="Invoice365:Inventory:Item1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+            </Label>
+            <Label FontWeight="Bold" Foreground="Black" Height="28" Margin="221,66,0,0" Name="barcodeLbl"
+                 VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="49" Content="{lex:LocText Invoice365:Inventory:Barcode}">
+            </Label>
+            <my:WindowsFormsHost Canvas.Left="82" Canvas.Top="93" Height="20.775" Name="windowsFormsHost1"
+                 Width="123" xmlns:my="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+                 HorizontalAlignment="Left" Margin="86,66,0,0" VerticalAlignment="Top" Grid.Column="1"
+                 TabIndex="1">
+                <wf:ComboBox SelectedValueChanged="itemCB_SelectedValueChanged" AutoCompleteMode="SuggestAppend"
+                     AutoCompleteSource="ListItems" x:Name="itemCodeCB" TabIndex="1" AllowDrop="True" Margin="162,58,197,0">
+                </wf:ComboBox>
+            </my:WindowsFormsHost>
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,66,84,0" Name="barCodeCombo"
+                 VerticalAlignment="Top" Width="124" Grid.Column="1" TextChanged="barCodeCombo_TextChanged"
+                 TabIndex="2" Grid.ColumnSpan="2" />
+            <TextBox Height="23.331" Margin="0,104,454,0" Name="qtyTB" TabIndex="9" VerticalAlignment="Top"
+                 Grid.Column="2" HorizontalAlignment="Right" Width="45" Grid.ColumnSpan="2" />
+            <Label FontWeight="Bold" Foreground="Black" Height="28" Margin="20,104,0,0" Name="label6"
+                 VerticalAlignment="Top" Grid.Column="2" HorizontalAlignment="Left" Width="59">
+                <LocText ResourceIdentifierKey="Invoice365:Inventory:Quantity" xmlns="http://schemas.root-project.org/xaml/presentation" />
+            </Label>
+            <Label FontWeight="Bold" Foreground="Black" Height="28" Margin="0,110,308,0" Name="label3"
+                 VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Right" Width="65">
+                <LocText ResourceIdentifierKey="Invoice365:Inventory:PriceBuy1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+            </Label>
+            <TextBox Height="23" Margin="86,106,0,0" Name="buyTB" TabIndex="5" VerticalAlignment="Top"
+                 Grid.Column="1" HorizontalAlignment="Left" Width="60.969" />
+            <Button FontSize="12" FontWeight="Normal" Height="26.02" Margin="0,171,6,0" Name="save"
+                 VerticalAlignment="Top" Grid.Column="1" Click="save_Click" TabIndex="11" HorizontalAlignment="Right"
+                 Width="71" Content="{lex:LocText Invoice365:Inventory:Save}">
+            </Button>
+            <Button FontSize="12" FontWeight="Normal" Height="26.02" Margin="0,171,12,0" Name="remove"
+                 VerticalAlignment="Top" Grid.Column="2" Click="remove_Click" TabIndex="12" HorizontalAlignment="Right"
+                 Width="71">
+                <LocText ResourceIdentifierKey="Invoice365:Inventory:Remove" xmlns="http://schemas.root-project.org/xaml/presentation" />
+            </Button>
+            <TextBox Grid.Column="1" Height="23.331" Margin="0,144,239,0" Name="unit" TabIndex="7"
+                 VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Visibility="Hidden" />
+            <Label FontWeight="Bold" Foreground="Black" Grid.Column="1" Height="28" Margin="15,144,0,0"
+                 Name="label4" VerticalAlignment="Top" HorizontalAlignment="Left" Width="38" Visibility="Hidden">
+                <LocText ResourceIdentifierKey="Invoice365:Inventory:Unit" xmlns="http://schemas.root-project.org/xaml/presentation" />
+            </Label>
+            <Label FontWeight="Bold" Foreground="Black" Grid.Column="1" Margin="170,144,0,0" Name="label5"
+                 Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="73" Visibility="Hidden">
+                <LocText ResourceIdentifierKey="Invoice365:Inventory:UnitValue" xmlns="http://schemas.root-project.org/xaml/presentation" />
+            </Label>
+            <TextBox Grid.Column="1" Height="23" Margin="239,144,0,0" Name="unitValue" TabIndex="8"
+                 VerticalAlignment="Top" HorizontalAlignment="Left" Width="61.031" Visibility="Hidden" />
+            <Label FontWeight="Bold" Foreground="Black" Grid.Column="1" Height="28" Margin="218,103,0,0"
+                 Name="label7" VerticalAlignment="Top" HorizontalAlignment="Left" Width="53">
+                <LocText ResourceIdentifierKey="Invoice365:Inventory:PriceSell1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+            </Label>
+            <TextBox Grid.Column="1" Height="23" Margin="0,104,54,0" Name="sellTB" TabIndex="6"
+                 VerticalAlignment="Top" HorizontalAlignment="Right" Width="60.969" />
+            <CheckBox Grid.Column="3" Height="17.901" HorizontalAlignment="Right" Margin="0,113,141,0"
+                 Name="indBox" VerticalAlignment="Top" Width="85.31" TabIndex="10" Visibility="Hidden">
+                <LocText ResourceIdentifierKey="Invoice365:Inventory:Individual" xmlns="http://schemas.root-project.org/xaml/presentation" />
+            </CheckBox>
+            <Label Content="{lex:LocText Invoice365:Inventory:Vendor1}" FontWeight="Bold" Foreground="Black"
+                 Grid.Column="3" Height="27.775" HorizontalAlignment="Left" Margin="153,65,0,0" Name="label8"
+                 VerticalAlignment="Top" Width="50" />
+            <WindowsFormsHost Canvas.Left="82" Canvas.Top="93" Grid.Column="3" Height="20.775"
+                 HorizontalAlignment="Left" Margin="203,64,0,0" Name="windowsFormsHost2" TabIndex="4"
+                 VerticalAlignment="Top" Width="123">
+                <wf:ComboBox x:Name="vendor" AllowDrop="True" AutoCompleteMode="SuggestAppend" AutoCompleteSource="ListItems"
+                     Margin="162,58,197,0" SelectedValueChanged="vendor_SelectedValueChanged" TabIndex="1" />
+            </WindowsFormsHost>
+            <ComboBox Height="26" IsEditable="True" Margin="67,64,335,0" Name="itemCB" TabIndex="3"
+                 VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2" />
+        </Grid>
+    </Viewbox>
+</local:Inv365Sortable>

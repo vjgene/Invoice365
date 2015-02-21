@@ -1,0 +1,144 @@
+﻿<Page x:Class="Invoice365.NewInvoice" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+     xmlns:local="clr-namespace:Invoice365" Title="{lex:LocText Invoice365:NewInvoice:Dashboard}"
+     Initialized="Window_Initialized" xmlns:lex="http://schemas.root-project.org/xaml/presentation">
+    <Page.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+    </Page.Resources>
+    <Viewbox VerticalAlignment="Top" HorizontalAlignment="Center" Stretch="Fill">
+        <DockPanel Width="Auto" Height="Auto" LastChildFill="True" Background="Transparent"
+             HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Height="556" Width="1111"
+                 Margin="-1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="225.533*" />
+                    <RowDefinition Height="194*" />
+                    <RowDefinition Height="136*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="226.407*" />
+                    <ColumnDefinition Width="102" />
+                    <ColumnDefinition Width="181*" />
+                    <ColumnDefinition Width="215.297" />
+                    <ColumnDefinition Width="178*" />
+                </Grid.ColumnDefinitions>
+                <Canvas Margin="8,0,57,31" Name="canvas1" Background="#FFFFFF" Grid.ColumnSpan="3"
+                     Height="154" VerticalAlignment="Bottom" Panel.ZIndex="-500">
+                    <Rectangle Fill="#FFFFFF" Height="169" Name="rectangle3" Stroke="Black" Width="589"
+                         Canvas.Left="0" Canvas.Top="-6" />
+                    <Button Name="save" Click="add_Click" FontWeight="Normal" FontSize="12" TabIndex="11"
+                         Height="22" Canvas.Left="227" Canvas.Top="126" Width="66">
+                        <LocText ResourceIdentifierKey="Invoice365:NewInvoice:Add" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                    </Button>
+                    <Label FontWeight="Bold" Foreground="Black" Height="28" Name="Itemcodelbl" Width="39"
+                         Canvas.Left="196" Canvas.Top="22">
+                        <LocText ResourceIdentifierKey="Invoice365:NewInvoice:Item" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                    </Label>
+                    <Label FontWeight="Bold" Foreground="Black" Name="barcodeLbl" Width="61.105" Height="28"
+                         Canvas.Left="381" Canvas.Top="19">
+                        <LocText ResourceIdentifierKey="Invoice365:NewInvoice:BarCode" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                    </Label>
+                    <ComboBox Height="28" IsEditable="True" x:Name="itemCB" TabIndex="2" Width="104" Canvas.Left="256"
+                         Canvas.Top="19" />
+                    <TextBox Name="barCodeCombo" TextChanged="barCodeCombo_TextChanged" TabIndex="3" Height="23"
+                         Canvas.Left="448" Canvas.Top="18" Width="112" />
+                    <Label FontWeight="Bold" Foreground="Black" Height="27.775" Name="label1" Width="68"
+                         Canvas.Left="11" Canvas.Top="22">
+                        <LocText ResourceIdentifierKey="Invoice365:NewInvoice:ItemCode" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                    </Label>
+                    <my:WindowsFormsHost Panel.ZIndex="500" Height="20.775" Name="windowsFormsHost1" xmlns:my="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+                         TabIndex="1" Canvas.Left="76" Canvas.Top="22" Width="103">
+                        <wf:ComboBox SelectedValueChanged="itemCB_SelectedValueChanged" AutoCompleteMode="SuggestAppend"
+                             AutoCompleteSource="ListItems" x:Name="itemCodeCB" TabIndex="1" AllowDrop="True" Margin="162,58,197,0">
+                        </wf:ComboBox>
+                    </my:WindowsFormsHost>
+                    <Button FontSize="12" FontWeight="Normal" Name="remove" Click="remove_Click" TabIndex="12"
+                         Height="22" Canvas.Left="299" Canvas.Top="126" Width="59">
+                        <LocText ResourceIdentifierKey="Invoice365:NewInvoice:Remove" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                    </Button>
+                    <TextBox Name="qtyTB" TabIndex="6" Margin="0,88,55,138" HorizontalAlignment="Right"
+                         Width="47" Grid.Column="2" Canvas.Left="448" Canvas.Top="-21" />
+                    <Label FontWeight="Bold" Foreground="Black" Name="label6" Margin="0,83,95,143" HorizontalAlignment="Right"
+                         Width="34.312" Grid.Column="2" Canvas.Left="381" Canvas.Top="-12">
+                        <LocText ResourceIdentifierKey="Invoice365:NewInvoice:Qty" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                    </Label>
+                    <Label FontWeight="Bold" Foreground="Black" Name="label3" Margin="191,88,194,138"
+                         Grid.Column="3" Grid.ColumnSpan="2" Canvas.Left="-180" Canvas.Top="-22">
+                        <LocText ResourceIdentifierKey="Invoice365:NewInvoice:PriceSell" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                    </Label>
+                    <TextBox Panel.ZIndex="500" Name="priceSell" TabIndex="4" Margin="74.437,113.556,102.212,131.444"
+                         IsReadOnly="False" Grid.Column="4" Canvas.Left="2" Canvas.Top="-52" Width="102" />
+                    <Label FontWeight="Bold" Margin="196,84,212,142" Name="curQty" Grid.Column="2" Grid.ColumnSpan="2"
+                         Canvas.Left="196" Canvas.Top="-22">
+                        <Label.Foreground>
+                            <SolidColorBrush />
+                        </Label.Foreground>
+                    </Label>
+                    <Label FontWeight="Bold" HorizontalAlignment="Left" Margin="9,86,0,140" Name="unitVal"
+                         Width="11.11" Grid.Column="3" Canvas.Left="201" Canvas.Top="-36">
+                        <Label.Foreground>
+                            <SolidColorBrush />
+                        </Label.Foreground>
+                    </Label>
+                    <Label Canvas.Left="196" Canvas.Top="66" Content="{lex:LocText Invoice365:NewInvoice:EditPrice}"
+                         FontWeight="Bold" Foreground="Black" Grid.Column="3" Grid.ColumnSpan="2" Name="label2" />
+                    <TextBox Canvas.Left="258" Canvas.Top="62" Grid.Column="4" IsReadOnly="False" Name="editPrice"
+                         Panel.ZIndex="500" TabIndex="5" Width="104" />
+                </Canvas>
+                <Button Grid.Column="1" Height="22" Margin="68,0,166,75" Name="savePrint" VerticalAlignment="Bottom"
+                     TabIndex="15" Click="saveAndPrint" Grid.Row="2" Grid.ColumnSpan="2">
+                    <LocText ResourceIdentifierKey="Invoice365:NewInvoice:SaveInvoice" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Button>
+                <ListView Name="txnView" ClipToBounds="True" AllowDrop="True" Grid.IsSharedSizeScope="False"
+                     ContextMenuOpening="txnView_ContextMenuOpening" Background="Transparent" BorderThickness="2"
+                     BorderBrush="SlateGray" Grid.ColumnSpan="5" Margin="8,201,228,103" Grid.RowSpan="3"
+                     FontFamily="Arial" FontSize="14">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:NewInvoice:ItemCode1}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:NewInvoice:Item1}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:NewInvoice:Qty1}" />
+                            <!--<GridViewColumn Width="150" Header="Individual Qty" />-->
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:NewInvoice:PriceSell1}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:NewInvoice:Amount}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Rectangle Fill="SteelBlue" Grid.ColumnSpan="5" Margin="8,14,228,185" Name="rectangle2"
+                     OpacityMask="#FF318E8E" Stroke="Black" />
+                <Label Foreground="White" Height="23.331" Name="invHeader" FontWeight="Bold" Grid.Column="2"
+                     Margin="0,18,165,185" Content="{lex:LocText Invoice365:NewInvoice:NewInvoice1}">
+                </Label>
+                <Rectangle Grid.Column="2" Grid.ColumnSpan="3" Height="162" HorizontalAlignment="Left"
+                     Margin="186,41,0,0" Name="rectangle1" Stroke="Black" VerticalAlignment="Top" Width="288"
+                     Fill="#FFFFFF" />
+                <Label Content="{lex:LocText Invoice365:NewInvoice:Customer}" FontWeight="Bold" Foreground="Black"
+                     Height="27.775" Margin="209,59,184,139" Name="label4" Width="68" Grid.Column="2" Grid.ColumnSpan="2" />
+                <WindowsFormsHost Height="20.775" Margin="0,59,29,146" Name="windowsFormsHost2" Panel.ZIndex="500"
+                     TabIndex="8" Width="149" Grid.Column="3" HorizontalAlignment="Right">
+                    <wf:ComboBox SelectedValueChanged="custCB_SelectedValueChanged" x:Name="customer"
+                         AllowDrop="True" AutoCompleteMode="SuggestAppend" AutoCompleteSource="ListItems" Margin="162,58,197,0"
+                         TabIndex="1" />
+                </WindowsFormsHost>
+                <Label Content="{lex:LocText Invoice365:NewInvoice:Phone}" FontWeight="Bold" Foreground="Black"
+                     Height="27.775" Margin="209,86,184,112" Name="label5" Width="68" Grid.Column="2" Grid.ColumnSpan="2" />
+                <Label Content="{lex:LocText Invoice365:NewInvoice:Biller}" FontWeight="Bold" Foreground="Black"
+                     Margin="209,120,199,90" Name="label7" Grid.Column="2" Grid.ColumnSpan="2" />
+                <TextBox Height="23" Margin="38,86,29,117" Name="custPhone" TabIndex="9" Grid.Column="3" />
+                <WindowsFormsHost Height="20.775" HorizontalAlignment="Right" Margin="0,120,29,85"
+                     Name="windowsFormsHost3" Panel.ZIndex="500" TabIndex="8" Width="149" Grid.Column="3">
+                    <wf:ComboBox x:Name="biller" AllowDrop="True" AutoCompleteMode="SuggestAppend" AutoCompleteSource="ListItems"
+                         Margin="162,58,197,0" SelectedValueChanged="biller_SelectedValueChanged" TabIndex="1" />
+                </WindowsFormsHost>
+                <Grid.Background>
+                    <SolidColorBrush />
+                </Grid.Background>
+            </Grid>
+        </DockPanel>
+    </Viewbox>
+    <Page.Background>
+        <SolidColorBrush />
+    </Page.Background>
+</Page>

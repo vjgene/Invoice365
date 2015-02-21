@@ -1,0 +1,45 @@
+﻿<Page  x:Class="Invoice365.PrintInvoice"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       Background="White"
+    Title="Print Invoice" HorizontalAlignment="Center" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="Auto" Width="1103">
+    <Page.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+    </Page.Resources>
+    <ScrollViewer Name="viewbox" CanContentScroll="True" VerticalScrollBarVisibility="Visible" Background="White" >
+        <Grid Background="White" Width="1102" >
+            <Rectangle Fill="White" Margin="26,51,379,468" Name="rectangle2" OpacityMask="#FF318E8E" Stroke="Black" />
+            <Rectangle Fill="White" Height="132" HorizontalAlignment="Left" Margin="26,76,0,0" Name="rectangle1" Stroke="Black" VerticalAlignment="Top" Width="697" />
+            <ListView ClipToBounds="False" Height="Auto" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+ AllowDrop="True"  FontSize="14" FontFamily="Arial" Background="White" BorderBrush="SlateGray" BorderThickness="2" Grid.IsSharedSizeScope="False" Margin="26,208,379,90" Name="printinvView"  >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Item" Width="140" />
+                        <GridViewColumn Header="Description" Width="100" />
+                        <GridViewColumn Header="Qty" Width="100" />
+                        <!--<GridViewColumn Header="Individual Qty" Width="100" />-->
+                        <GridViewColumn Header="Price Sell" Width="100" />
+                        <GridViewColumn Header="Amount" Width="100" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Content="Invoice No:" FontSize="16" FontWeight="Normal" Foreground="Black" Height="24" HorizontalAlignment="Left" Margin="39,13,0,0" Name="label1" VerticalAlignment="Top" Width="92" />
+            <Label Content="Total" FontWeight="Bold" Foreground="Black" Height="28" HorizontalAlignment="Left" Margin="538,0,0,101" Name="label3" VerticalAlignment="Bottom" Width="47" />
+            <TextBox Height="23" HorizontalAlignment="Right" IsReadOnly="True" Margin="0,0,408,108" Name="totalTB" TabIndex="4" VerticalAlignment="Bottom" Width="90" BorderThickness="0" />
+            <Label Content="Bill To" FontWeight="Bold" Foreground="Black" Height="19" HorizontalAlignment="Left" Margin="247,84,0,0" Name="label2" VerticalAlignment="Top" Width="65" />
+            <TextBlock Height="108" HorizontalAlignment="Right" Margin="0,84,626,0" Name="customerTB" VerticalAlignment="Top" Width="185" />
+            <Button Click="print_Click_1" Content="Print" Height="23" Margin="358,0,674,15" Name="print" VerticalAlignment="Bottom" FontWeight="Bold" />
+            <Label FontSize="16" FontWeight="Normal" Foreground="SteelBlue" Height="27" HorizontalAlignment="Left" Margin="137,12,0,0" Name="invNo" VerticalAlignment="Top" Width="49" />
+            <TextBlock Height="108" HorizontalAlignment="Left" Margin="39,84,0,0" Name="billerTB" VerticalAlignment="Top" Width="185" />
+            <Label FontSize="16" FontWeight="Bold" Foreground="Black" Height="27" HorizontalAlignment="Right" Margin="0,13,390,0" Name="date" VerticalAlignment="Top" Width="190" />
+            <Label Content="Ship To" FontWeight="Bold" Foreground="Black" Height="19" HorizontalAlignment="Right" Margin="0,84,556,0" Name="label6" VerticalAlignment="Top" Width="65" />
+            <TextBlock Height="108" HorizontalAlignment="Right" Margin="0,84,390,0" Name="shipTo" VerticalAlignment="Top" Width="185" />
+            <Label Content="Invoice" FontWeight="Bold" Foreground="Black" Margin="330,51,724,476" Name="label9" />
+            <Label Content="Date:" FontSize="16" FontWeight="Normal" Foreground="Black" Height="37" HorizontalAlignment="Left" Margin="416,12,0,0" Name="label4" VerticalAlignment="Top" Width="45" />
+            <Label Content="$" FontWeight="Bold" Foreground="Black" Height="28" HorizontalAlignment="Left" Margin="589,0,0,101" Name="label5" VerticalAlignment="Bottom" Width="9" />
+        </Grid>
+    </ScrollViewer>
+</Page>
+

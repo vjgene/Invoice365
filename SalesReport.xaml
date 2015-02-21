@@ -1,0 +1,69 @@
+﻿
+<local:Inv365Sortable x:Class="Invoice365.SalesReport"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Invoice365"
+    xmlns:z="http://schemas.microsoft.com/wpf/2008/toolkit"
+    xmlns:y="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+    Title="Sales Report" Initialized="Window_Initialized" HorizontalAlignment="Center" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:my="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" >
+    <local:Inv365Sortable.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+    </local:Inv365Sortable.Resources>
+    <Viewbox VerticalAlignment="Top" HorizontalAlignment="Center" Stretch="Fill">
+    <Grid Width="1064">
+        <Grid.Background>
+            <SolidColorBrush />
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="510*" />
+            <ColumnDefinition Width="382*" />
+            <ColumnDefinition Width="172*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Rectangle Fill="SteelBlue" Margin="0,-1,0,2" Name="rectangle2" OpacityMask="#FF318E8E" Stroke="Black" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="839" />
+        <ListView  GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler" FontFamily="Arial" FontSize="14" 
+                   Margin="0,90,53,77" Name="invView" ClipToBounds="True" AllowDrop="True" Grid.IsSharedSizeScope="False"
+                   Background="Transparent" BorderThickness="2" BorderBrush="SlateGray" Grid.Row="1"
+                   Height="349" Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="140" Header="Item Code" />
+                    <GridViewColumn Width="140" Header="Item" />
+                    <GridViewColumn Width="100" Header="Qty Sold " />
+                    <!--<GridViewColumn Width="100" Header="Unit Qty Sold " />-->
+                    <GridViewColumn Width="100" Header="Amount" />                   
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <Rectangle Fill="#FFFFFF" Height="86" Margin="0,28,53,0" Name="rectangle1" Stroke="Black" VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+        <Label Content="Product Sales Report" FontWeight="Bold" Foreground="White" Height="23.331" Margin="325,0,301,6" Name="reportTitle" Grid.ColumnSpan="2" />
+        <!--<Button Content="Print Invoice" FontSize="12" FontWeight="Bold" Height="22" Margin="281,454,120,40" Name="save" TabIndex="11" Grid.Row="1" Click="save_Click" />
+        <Button Content="Edit Invoice" FontSize="12" FontWeight="Bold" Height="22" Margin="0,454,564,40" Name="remove" TabIndex="12" Grid.Row="1" HorizontalAlignment="Right" Width="97" Grid.ColumnSpan="2" Click="remove_Click" />-->
+        <z:DatePicker SelectedDateFormat="Long"              
+                  FirstDayOfWeek="Monday" Margin="94,8,201,478" Grid.Row="1" Name="startDate" />
+        <z:DatePicker FirstDayOfWeek="Monday" Margin="408,7,270,479" SelectedDateFormat="Long" Grid.Row="1" Grid.ColumnSpan="2" Text="" Name="endDate" />
+        <Label Content="Start Date" FontWeight="Bold" Foreground="Black" Height="27.775" HorizontalAlignment="Left" Margin="29,11,0,0" Name="label2" VerticalAlignment="Top" Width="70" Grid.Row="1" />
+        <Label Content="End Date" FontWeight="Bold" Foreground="Black" Height="27.775" HorizontalAlignment="Right" Margin="0,11,108,0" Name="label1" VerticalAlignment="Top" Width="60" Grid.Row="1" />
+        <Button Content="Generate Report" FontSize="12" FontWeight="Normal" Height="26.02" HorizontalAlignment="Right" Margin="0,24,101,0" Name="generate" TabIndex="11" VerticalAlignment="Top" Width="115" Grid.Column="1" Grid.Row="1" Click="generate_Click" />
+        <Button Content="Export to Csv File" FontSize="12" FontWeight="Normal" Height="26.02" HorizontalAlignment="Right" Margin="0,445,370,0" Name="button1" TabIndex="11" VerticalAlignment="Top" Width="106" Grid.Row="1" Click="button1_Click" Grid.ColumnSpan="2" />
+            <WindowsFormsHost Height="20.775" HorizontalAlignment="Right" Margin="0,48,266,447" Name="windowsFormsHost1" Panel.ZIndex="500" TabIndex="8" Width="149" Grid.Row="1">
+                <my:ComboBox x:Name="customer" AllowDrop="True" AutoCompleteMode="SuggestAppend" AutoCompleteSource="ListItems" Margin="162,58,197,0" SelectedValueChanged="customer_SelectedValueChanged" TabIndex="1" />
+            </WindowsFormsHost>
+            <WindowsFormsHost Height="20.775" HorizontalAlignment="Right" Margin="0,48,334,447" Name="windowsFormsHost2" Panel.ZIndex="500" TabIndex="8" Width="149" Grid.ColumnSpan="2" Grid.Row="1">
+                <my:ComboBox x:Name="custphone" AllowDrop="True" AutoCompleteMode="SuggestAppend" AutoCompleteSource="ListItems" Margin="162,58,197,0" SelectedValueChanged="custphone_SelectedValueChanged" TabIndex="1" />
+            </WindowsFormsHost>
+            <Label Content="Customer" FontWeight="Bold" Foreground="Black" Height="27.775" HorizontalAlignment="Left" Margin="29,47,0,0" Name="label3" VerticalAlignment="Top" Width="63" Grid.Row="1" />
+            <Label Content="Phone" FontWeight="Bold" Foreground="Black" Height="27.775" HorizontalAlignment="Left" Margin="341,46,0,0" Name="label4" VerticalAlignment="Top" Width="61" Grid.Row="1" />
+        </Grid>
+        </Viewbox>
+    <Page.Background>
+        <SolidColorBrush />
+    </Page.Background>
+</local:Inv365Sortable>

@@ -1,0 +1,111 @@
+﻿<Window x:Class="Invoice365.HomeWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:xpbar="clr-namespace:ZonaTools.XPlorerBar;assembly=ZonaTools.XPlorerBar"
+     Title="{lex:LocText Invoice365:HomeWindow:Invoice365invoice365ewebcomput}" Height="632"
+     Width="871" WindowState="Maximized" Initialized="Window_Initialized" AllowsTransparency="False"
+     xmlns:lex="http://schemas.root-project.org/xaml/presentation">
+    <DockPanel Width="Auto" Height="Auto" LastChildFill="True" Background="White">
+        <StackPanel Width="Auto" Height="31" Orientation="Horizontal" DockPanel.Dock="Bottom"
+             Background="SteelBlue" HorizontalAlignment="Stretch" FlowDirection="RightToLeft">
+            <Label Width="552" Height="23" Content="{lex:LocText Invoice365:HomeWindow:Copyrightc2010EWebComputingSol}"
+                 FontFamily="Arial" FontSize="10" HorizontalAlignment="Center" HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center" FlowDirection="RightToLeft" />
+        </StackPanel>
+        <Canvas Background="SteelBlue" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+             Width="180" Height="Auto" AllowDrop="True" DockPanel.Dock="Left" FlowDirection="LeftToRight">
+            <Canvas.Resources>
+                <Style x:Key="{x:Type Hyperlink}" TargetType="{x:Type Hyperlink}">
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="TextDecorations" Value="Underline" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value=" #B59D47" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Cursor" Value="Hand" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Canvas.Resources>
+            <!-- HeaderImage="/Resources/users.png" -->
+            <xpbar:XPlorerBar x:Name="ZT_XPlorerBar" VerticalAlignment="Stretch" Width="168" AllowMultipleExpands="{Binding ElementName=chMultipleExpands, Path=IsChecked}"
+                 xpbar:ThemeManager.Theme="Blue" Height="Auto">
+                <xpbar:XPlorerSection Header="{lex:LocText Invoice365:HomeWindow:CustomersBillers}"
+                     IsExpanded="True" IsPrimary="{Binding ElementName=chPrimary, Path=IsChecked}">
+                    <StackPanel Orientation="Vertical">
+                        <xpbar:XPlorerItem ItemImage="/Resources/user--arrow.png" ItemText="{lex:LocText Invoice365:HomeWindow:ManageCustomers}"
+                             Click="customer_Click" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/user-business.png" ItemText="{lex:LocText Invoice365:HomeWindow:ManageBillers}"
+                             Click="billers_Click" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/database-export.png" ItemText="{lex:LocText Invoice365:HomeWindow:ExportCustomers}"
+                             Click="expCustomers_Click" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/database-export.png" ItemText="{lex:LocText Invoice365:HomeWindow:ExportBillers}"
+                             Click="expBillers_Click" />
+                    </StackPanel>
+                </xpbar:XPlorerSection>
+                <xpbar:XPlorerSection Header="{lex:LocText Invoice365:HomeWindow:InvoiceInventory}"
+                     IsExpanded="True" IsPrimary="{Binding ElementName=chPrimary, Path=IsChecked}">
+                    <StackPanel Orientation="Vertical">
+                        <xpbar:XPlorerItem ItemImage="/Resources/new.png" ItemText="{lex:LocText Invoice365:HomeWindow:CreateNewInvoice}"
+                             Click="DashboardClick" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/receipt.png" ItemText="{lex:LocText Invoice365:HomeWindow:ManageInvoices}"
+                             Click="InvoicesClick" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/luggage.png" ItemText="{lex:LocText Invoice365:HomeWindow:ManageInventory}"
+                             Click="InvClick" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/database-export.png" ItemText="{lex:LocText Invoice365:HomeWindow:ExportInvoices}"
+                             Click="expInvoices_Click" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/database-export.png" ItemText="{lex:LocText Invoice365:HomeWindow:ExportInventory}"
+                             Click="expInventory_Click" />
+                    </StackPanel>
+                </xpbar:XPlorerSection>
+                <xpbar:XPlorerSection Header="{lex:LocText Invoice365:HomeWindow:WeeklyReports}" IsExpanded="True"
+                     IsPrimary="{Binding ElementName=chPrimary, Path=IsChecked}">
+                    <StackPanel Orientation="Vertical">
+                        <xpbar:XPlorerItem ItemImage="/Resources/moneys.png" ItemText="{lex:LocText Invoice365:HomeWindow:SalesByProducts}"
+                             Click="wreports_Click" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/moneys.png" ItemText="{lex:LocText Invoice365:HomeWindow:SalesByCustomer}"
+                             Click="wcustomerreports_Click" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/moneys.png" ItemText="{lex:LocText Invoice365:HomeWindow:SalesByBiller}"
+                             Click="wbillerreports_Click" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/calculator.png" ItemText="{lex:LocText Invoice365:HomeWindow:DueByCustomer}"
+                             Click="wcustomerDue_Click" />
+                    </StackPanel>
+                </xpbar:XPlorerSection>
+                <xpbar:XPlorerSection Header="{lex:LocText Invoice365:HomeWindow:DailyReports}" IsExpanded="True"
+                     IsPrimary="{Binding ElementName=chPrimary, Path=IsChecked}">
+                    <StackPanel Orientation="Vertical">
+                        <xpbar:XPlorerItem ItemImage="/Resources/moneys.png" ItemText="{lex:LocText Invoice365:HomeWindow:SalesByProducts1}"
+                             Click="reports_Click" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/moneys.png" ItemText="{lex:LocText Invoice365:HomeWindow:SalesByCustomer1}"
+                             Click="customerreports_Click" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/moneys.png" ItemText="{lex:LocText Invoice365:HomeWindow:SalesByBiller1}"
+                             Click="billerreports_Click" />
+                        <xpbar:XPlorerItem ItemImage="/Resources/calculator.png" ItemText="{lex:LocText Invoice365:HomeWindow:DueByCustomer1}"
+                             Click="customerDue_Click" />
+                    </StackPanel>
+                </xpbar:XPlorerSection>
+                <xpbar:XPlorerSection Header="{lex:LocText Invoice365:HomeWindow:System}" IsExpanded="True"
+                     IsPrimary="{Binding ElementName=chPrimary, Path=IsChecked}">
+                    <StackPanel Orientation="Vertical">
+                        <xpbar:XPlorerItem ItemImage="/Resources/chm.gif" ItemText="{lex:LocText Invoice365:HomeWindow:Invoice365Help}"
+                             Click="help_Click" />
+                        <xpbar:XPlorerItem ItemImage="i365.ico" ItemText="{lex:LocText Invoice365:HomeWindow:AboutInvoice365}"
+                             Click="about_Click"/> 
+                        <xpbar:XPlorerItem ItemImage="i365.ico" ItemText="Update License"
+                             Click="update_Click" />
+                    </StackPanel>
+                </xpbar:XPlorerSection>
+            </xpbar:XPlorerBar>
+            <!--<Label Canvas.Left="6" Canvas.Top="6" Content="Customers" Height="20" Name="label1" Width="87" Foreground="#FFB5B5B5" FontFamily="Adobe Heiti Std" FontSize="12" />
+            <Label Canvas.Left="6" Canvas.Top="78" Content="Invoice" FontFamily="Adobe Heiti Std" FontSize="12" Foreground="#FFB5B5B5" Height="20" Name="label2" Width="87" />
+            <Label Canvas.Left="6" Canvas.Top="171" Content="Inventory" FontFamily="Adobe Heiti Std" FontSize="12" Foreground="#FFB5B5B5" Height="20" Name="label3" Width="87" />
+            <Label Canvas.Left="6" Canvas.Top="241" Content="Billers" FontFamily="Adobe Heiti Std" FontSize="12" Foreground="#FFB5B5B5" Height="20" Name="label4" Width="87" />
+            <Label Canvas.Left="6" Canvas.Top="312" Content="Reports" FontFamily="Adobe Heiti Std" FontSize="12" Foreground="#FFB5B5B5" Height="20" Name="label5" Width="87" />          
+            <Label Canvas.Left="7" Canvas.Top="422" Content="System" FontFamily="Adobe Heiti Std" FontSize="12" Foreground="#FFB5B5B5" Height="20" Name="label6" Width="87" />-->
+        </Canvas>
+        <Frame Width="Auto" Height="Auto" Background="white" Name="ContentFrame" Source="NewInvoice.xaml">
+        </Frame>
+    </DockPanel>
+</Window>

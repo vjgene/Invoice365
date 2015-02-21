@@ -1,0 +1,126 @@
+﻿<local:Inv365Sortable x:Class="Invoice365.Biller" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+     xmlns:local="clr-namespace:Invoice365" Title="{lex:LocText Invoice365:Biller:Dashboard}"
+     Initialized="Window_Initialized" Foreground="#FF35496A" xmlns:lex="http://schemas.root-project.org/xaml/presentation">
+    <Page.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+    </Page.Resources>
+    <DockPanel Width="Auto" Height="Auto" LastChildFill="True" Background="Transparent"
+         HorizontalAlignment="Center" VerticalAlignment="Top">
+        <Viewbox VerticalAlignment="Top" HorizontalAlignment="Center" Stretch="Fill">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Height="556" Width="1111"
+                 Margin="-1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="268*" />
+                    <RowDefinition Height="288*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="226.407*" />
+                    <ColumnDefinition Width="102" />
+                    <ColumnDefinition Width="181*" />
+                    <ColumnDefinition Width="215.297" />
+                    <ColumnDefinition Width="178*" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.ColumnSpan="4" Margin="18,12,27,232" Name="rectangle2" OpacityMask="#FF318E8E"
+                     Stroke="Black" Fill="SteelBlue" />
+                <Rectangle Margin="19,36,27,58" Name="rectangle1" Stroke="Black" Grid.ColumnSpan="4"
+                     Fill="#FFFFFF" OpacityMask="#FF318E8E" />
+                <ListView Margin="19,228,27,34" Name="custView" ClipToBounds="True" AllowDrop="True"
+                     Grid.IsSharedSizeScope="True" BorderThickness="2" BorderBrush="#FF809AB2" Grid.ColumnSpan="4"
+                     SelectionChanged="custView_SelectionChanged" FontFamily="Arial" FontSize="14" Grid.RowSpan="2"
+                     TabIndex="13">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:Biller:Company}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:Biller:Phone}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:Biller:FirstName}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:Biller:LastName}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:Biller:Address}" />
+                            <!--<GridViewColumn Width="140" Header="Barcode" />-->
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:Biller:City}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:Biller:State}" />
+                            <!--<GridViewColumn Header="Price Sell" />-->
+                        </GridView>
+                    </ListView.View>
+                    <ListView.Background>
+                        <SolidColorBrush />
+                    </ListView.Background>
+                </ListView>
+                <Label Foreground="White" Height="23.331" Name="title" Grid.Column="1" Margin="77,13,0,0"
+                     VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Left" Width="93" Grid.ColumnSpan="2"
+                     Content="{lex:LocText Invoice365:Biller:AddCustomer}">
+                </Label>
+                <Label FontWeight="Bold" Foreground="Black" Margin="135,57,0,0" Name="label5" HorizontalAlignment="Left"
+                     Width="53" Grid.Column="2" Height="28" VerticalAlignment="Top">
+                    <LocText ResourceIdentifierKey="Invoice365:Biller:Phone1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Label>
+                <TextBox Height="23" Margin="194,56,146,0" Name="phone" VerticalAlignment="Top" TabIndex="8"
+                     Grid.Column="2" Grid.ColumnSpan="2" />
+                <Label FontWeight="Bold" Foreground="Black" Margin="0,55,46,185" Name="label7" Grid.Column="1">
+                    <LocText ResourceIdentifierKey="Invoice365:Biller:City1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Label>
+                <Label FontWeight="Bold" Foreground="Black" Height="28" Margin="306,89,0,0" Name="label8"
+                     VerticalAlignment="Top" HorizontalAlignment="Left" Width="46.297" Grid.ColumnSpan="2">
+                    <LocText ResourceIdentifierKey="Invoice365:Biller:State1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Label>
+                <TextBox Height="23" Margin="63,94,163,0" Name="state" VerticalAlignment="Top" TabIndex="7"
+                     Grid.Column="1" Grid.ColumnSpan="2" />
+                <Button FontSize="12" FontWeight="Normal" Margin="152,0,16,76.02" Name="savecustomer"
+                     Click="savecustomer_Click" TabIndex="11" Height="22" VerticalAlignment="Bottom">
+                    <LocText ResourceIdentifierKey="Invoice365:Biller:SaveCustomer" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Button>
+                <Label FontWeight="Bold" Foreground="Black" Name="label4" Margin="40,88,204,0" Height="28"
+                     VerticalAlignment="Top">
+                    <LocText ResourceIdentifierKey="Invoice365:Biller:Street1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Label>
+                <Label FontWeight="Bold" Foreground="Black" Height="28" Name="label2" Width="68" HorizontalAlignment="Left"
+                     Margin="38,55,0,0" VerticalAlignment="Top">
+                    <LocText ResourceIdentifierKey="Invoice365:Biller:Company1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Label>
+                <my:WindowsFormsHost Height="20.775" Name="customerCBHost" xmlns:my="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+                     TabIndex="1" Margin="118,51,60,0" VerticalAlignment="Top">
+                    <wf:ComboBox SelectedValueChanged="custCB_SelectedValueChanged" AutoCompleteMode="SuggestAppend"
+                         AutoCompleteSource="ListItems" x:Name="customerCB" TabIndex="1" AllowDrop="True" Margin="162,58,197,0">
+                    </wf:ComboBox>
+                </my:WindowsFormsHost>
+                <TextBox Height="23" Name="street1" TabIndex="4" Margin="118,88,60,0" VerticalAlignment="Top" />
+                <Label FontWeight="Bold" Foreground="Black" Height="28" Margin="42,129,0,0" Name="label1"
+                     VerticalAlignment="Top" HorizontalAlignment="Left" Width="63">
+                    <LocText ResourceIdentifierKey="Invoice365:Biller:Street2" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Label>
+                <TextBox Height="23" Margin="117,128,61,0" Name="street2" TabIndex="5" VerticalAlignment="Top" />
+                <TextBox Margin="0,57,157,188" Name="city" TabIndex="6" Grid.Column="1" Grid.ColumnSpan="2"
+                     HorizontalAlignment="Right" Width="129.402" />
+                <Label FontWeight="Bold" Foreground="Black" HorizontalAlignment="Right" Margin="0,92,57,148"
+                     Name="label10" Width="53" Grid.Column="2">
+                    <LocText ResourceIdentifierKey="Invoice365:Biller:Fax" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Label>
+                <TextBox Margin="195,92,145,153" Name="fax" TabIndex="9" Grid.Column="2" Grid.ColumnSpan="2" />
+                <Label FontWeight="Bold" Foreground="Black" Height="28" HorizontalAlignment="Right"
+                     Margin="0,0,57,109" Name="label11" VerticalAlignment="Bottom" Width="53" Grid.Column="2">
+                    <LocText ResourceIdentifierKey="Invoice365:Biller:Email" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Label>
+                <TextBox Height="23" Margin="195,0,111,112" Name="email" TabIndex="10" VerticalAlignment="Bottom"
+                     Grid.Column="2" Grid.ColumnSpan="2" />
+                <Button FontSize="12" FontWeight="Normal" Height="22" HorizontalAlignment="Left" Margin="3.082,0,0,76.778"
+                     Name="deleteCustomer" TabIndex="12" VerticalAlignment="Bottom" Width="138.966" Grid.Column="1"
+                     Grid.ColumnSpan="2" Click="deleteCustomer_Click">
+                    <LocText ResourceIdentifierKey="Invoice365:Biller:DeleteCustomer" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Button>
+                <Label Content="{lex:LocText Invoice365:Biller:Zip}" FontWeight="Bold" Foreground="Black"
+                     Height="28" HorizontalAlignment="Left" Margin="1,131,0,0" Name="label3" VerticalAlignment="Top"
+                     Width="46.297" Grid.Column="1" />
+                <TextBox Height="23" Margin="65,129,161,0" Name="zip" TabIndex="7" VerticalAlignment="Top"
+                     Grid.Column="1" Grid.ColumnSpan="2" />
+                <Grid.Background>
+                    <SolidColorBrush />
+                </Grid.Background>
+            </Grid>
+        </Viewbox>
+    </DockPanel>
+    <Page.Background>
+        <SolidColorBrush />
+    </Page.Background>
+</local:Inv365Sortable>

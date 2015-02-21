@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishUrlHistory>C:\work\invoice365\publish\|C:\work\inv365setup\|C:\work\balance10\|C:\work\balance\|C:\work\tx\publish\</PublishUrlHistory>
+    <InstallUrlHistory>http://invoice365.ewebcomputing.com/</InstallUrlHistory>
+    <SupportUrlHistory>http://invoice365.ewebcomputing.com|http://www.ewebcomputing.com</SupportUrlHistory>
+    <UpdateUrlHistory>http://ewebcomputing.com/inv365/</UpdateUrlHistory>
+    <BootstrapperUrlHistory>
+    </BootstrapperUrlHistory>
+    <ErrorReportUrlHistory>
+    </ErrorReportUrlHistory>
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <ProjectView>ShowAllFiles</ProjectView>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+  </PropertyGroup>
+</Project>

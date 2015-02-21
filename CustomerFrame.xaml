@@ -1,0 +1,180 @@
+﻿<local:Inv365Sortable x:Class="Invoice365.CustomerFrame" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+     xmlns:local="clr-namespace:Invoice365" Title="{lex:LocText Invoice365:CustomerFrame:Dashboard}"
+     Initialized="Window_Initialized" Foreground="#FF35496A" xmlns:lex="http://schemas.root-project.org/xaml/presentation">
+    <Page.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+    </Page.Resources>
+    <DockPanel Width="Auto" Height="Auto" LastChildFill="True" Background="Transparent"
+         HorizontalAlignment="Center" VerticalAlignment="Top">
+        <Viewbox VerticalAlignment="Top" HorizontalAlignment="Center" Stretch="Fill">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Height="556" Width="1111"
+                 Margin="-1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="268*" />
+                    <RowDefinition Height="288*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="226.407*" />
+                    <ColumnDefinition Width="102" />
+                    <ColumnDefinition Width="181*" />
+                    <ColumnDefinition Width="215.297" />
+                    <ColumnDefinition Width="178*" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.ColumnSpan="4" Margin="18,12,27,232" Name="rectangle2" OpacityMask="#FF318E8E"
+                     Stroke="Black" Fill="SteelBlue" />
+                <ListView Margin="19,257,27,34" Name="custView" ClipToBounds="True" AllowDrop="True"
+                     Grid.IsSharedSizeScope="True" BorderThickness="2" BorderBrush="#FF809AB2" Grid.ColumnSpan="4"
+                     SelectionChanged="custView_SelectionChanged" FontFamily="Arial" FontSize="14" TabIndex="13"
+                     Grid.RowSpan="2">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:CustomerFrame:Company}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:CustomerFrame:Phone}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:CustomerFrame:FirstName}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:CustomerFrame:LastName}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:CustomerFrame:Address}" />
+                            <!--<GridViewColumn Width="140" Header="Barcode" />-->
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:CustomerFrame:City}" />
+                            <GridViewColumn Width="150" Header="{lex:LocText Invoice365:CustomerFrame:State}" />
+                            <!--<GridViewColumn Header="Price Sell" />-->
+                        </GridView>
+                    </ListView.View>
+                    <ListView.Background>
+                        <SolidColorBrush />
+                    </ListView.Background>
+                </ListView>
+                <Label Foreground="White" Height="23.331" Name="title" Grid.Column="1" Margin="77,13,0,0"
+                     VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Left" Width="93" Grid.ColumnSpan="2"
+                     Content="{lex:LocText Invoice365:CustomerFrame:AddCustomer}">
+                </Label>
+                <Button FontSize="12" FontWeight="Normal" Margin="291,0,224,13" Name="savecustomer"
+                     Click="savecustomer_Click" TabIndex="11" Height="22" VerticalAlignment="Bottom" Grid.ColumnSpan="3">
+                    <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:SaveCustomer" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Button>
+                <Button FontSize="12" FontWeight="Normal" Height="22" HorizontalAlignment="Left" Margin="27,0,0,12"
+                     Name="deleteCustomer" TabIndex="12" VerticalAlignment="Bottom" Width="138.966" Grid.Column="2"
+                     Click="deleteCustomer_Click">
+                    <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:DeleteCustomer" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Button>
+                <TabControl Height="158" HorizontalAlignment="Left" Margin="21,70,0,0" Name="tabControl1"
+                     VerticalAlignment="Top" Width="825" Grid.ColumnSpan="4" BorderThickness="0">
+                    <TabControl.BorderBrush>
+                        <SolidColorBrush />
+                    </TabControl.BorderBrush>
+                    <TabItem Header="{lex:LocText Invoice365:CustomerFrame:BillingAddress}" Name="billing">
+                        <Canvas Height="118" Name="canvas1" Width="818">
+                            <Label FontWeight="Bold" Foreground="Black" Name="label7" Canvas.Left="33" Canvas.Top="87">
+                                <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:City1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                            </Label>
+                            <Label FontWeight="Bold" Foreground="Black" Name="label4" Height="28" Canvas.Left="28"
+                                 Canvas.Top="16">
+                                <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:Street1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                            </Label>
+                            <TextBox Height="23" Name="street1" TabIndex="4" Canvas.Left="93" Canvas.Top="16"
+                                 Width="131" />
+                            <Label FontWeight="Bold" Foreground="Black" Height="28" Name="label1" Canvas.Left="29"
+                                 Canvas.Top="51">
+                                <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:Street2" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                            </Label>
+                            <TextBox Height="23" Name="street2" TabIndex="5" Canvas.Left="93" Canvas.Top="51"
+                                 Width="132" />
+                            <!--<TextBox Name="city" TabIndex="6" Width="129.402" Canvas.Left="93" Canvas.Top="87" />-->
+                            <my:WindowsFormsHost Height="20.775" Name="cityCBHost" xmlns:my="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+                     TabIndex="1" Margin="128,42,50,0" VerticalAlignment="Top" Width="131" Canvas.Left="-35" Canvas.Top="46">
+                                <wf:ComboBox SelectedValueChanged="cityCB_SelectedValueChanged" AutoCompleteMode="SuggestAppend"
+                         AutoCompleteSource="ListItems" x:Name="city" TabIndex="1" AllowDrop="True" Margin="162,58,197,0">
+                                </wf:ComboBox>
+                            </my:WindowsFormsHost>
+                            <!--<TextBox Height="23" Name="phone" TabIndex="8" Canvas.Left="333" Canvas.Top="87" Width="125" />-->
+                            <Label FontWeight="Bold" Foreground="Black" Height="28" Name="label8" Width="46.297"
+                                 Canvas.Left="275" Canvas.Top="15">
+                                <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:State1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                            </Label>
+                            <TextBox Height="23" Name="state" TabIndex="7" Canvas.Left="335" Canvas.Top="20" Width="127" />
+                            <Label FontWeight="Bold" Foreground="Black" Name="label10" Width="53" Canvas.Left="515"
+                                 Canvas.Top="25">
+                                <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:Fax" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                            </Label>
+                            <TextBox Name="fax" TabIndex="9" Canvas.Left="576" Canvas.Top="23" Width="126" />
+                            <Label FontWeight="Bold" Foreground="Black" Height="28" Name="label11" Width="53"
+                                 Canvas.Left="515" Canvas.Top="57">
+                                <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:Email" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                            </Label>
+                            <TextBox Height="23" Name="email" TabIndex="10" Canvas.Left="578" Canvas.Top="55"
+                                 Width="126" />
+                            <Label Canvas.Left="274" Canvas.Top="51" Content="{lex:LocText Invoice365:CustomerFrame:Zip}"
+                                 FontWeight="Bold" Foreground="Black" Height="28" Name="label3" Width="46.297" />
+                            <TextBox Canvas.Left="334" Canvas.Top="56" Height="23" Name="zip" TabIndex="7" Width="127" />
+                            <my:WindowsFormsHost Height="20.775" Name="customerCBHost" xmlns:my="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration" TabIndex="1" Canvas.Left="580" Canvas.Top="87" Width="125">
+                                <wf:ComboBox SelectedValueChanged="custCB_SelectedValueChanged" AutoCompleteMode="SuggestAppend" AutoCompleteSource="ListItems" x:Name="customerCB" TabIndex="1" AllowDrop="True" Margin="162,58,197,0"></wf:ComboBox>
+                            </my:WindowsFormsHost>
+                            <Label FontWeight="Bold" Foreground="Black" Height="28" Name="label2" Width="68" Canvas.Left="511" Canvas.Top="86">
+                                <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:Company1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                            </Label>
+                        </Canvas>
+                    </TabItem>
+                    <TabItem Header="{lex:LocText Invoice365:CustomerFrame:ShippingAddress}" Name="shipping">
+                        <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Label Canvas.Left="15" Canvas.Top="82" Content="{lex:LocText Invoice365:CustomerFrame:City2}"
+                                 FontWeight="Bold" Foreground="Black" Name="label6" />
+                            <Label Canvas.Left="10" Canvas.Top="11" Content="{lex:LocText Invoice365:CustomerFrame:Street11}"
+                                 FontWeight="Bold" Foreground="Black" Height="28" Name="label9" />
+                            <TextBox Canvas.Left="75" Canvas.Top="11" Height="23" Name="s_street1" TabIndex="4"
+                                 Width="131" />
+                            <Label Canvas.Left="11" Canvas.Top="46" Content="{lex:LocText Invoice365:CustomerFrame:Street21}"
+                                 FontWeight="Bold" Foreground="Black" Height="28" Name="label12" />
+                            <TextBox Canvas.Left="75" Canvas.Top="46" Height="23" Name="s_street2" TabIndex="5"
+                                 Width="132" />
+                            <TextBox Canvas.Left="75" Canvas.Top="82" Name="s_city" TabIndex="6" Width="129.402" />
+                            <Label Canvas.Left="258" Canvas.Top="80" Content="{lex:LocText Invoice365:CustomerFrame:Phone2}"
+                                 FontWeight="Bold" Foreground="Black" Height="28" Name="label13" Width="53" />
+                            <TextBox Canvas.Left="315" Canvas.Top="82" Height="23" Name="s_phone" TabIndex="8"
+                                 Width="125" />
+                            <Label Canvas.Left="257" Canvas.Top="10" Content="{lex:LocText Invoice365:CustomerFrame:State2}"
+                                 FontWeight="Bold" Foreground="Black" Height="28" Name="label14" Width="46.297" />
+                            <TextBox Canvas.Left="317" Canvas.Top="15" Height="23" Name="s_state" TabIndex="7"
+                                 Width="127" />
+                            <Label Canvas.Left="497" Canvas.Top="20" Content="{lex:LocText Invoice365:CustomerFrame:Fax1}"
+                                 FontWeight="Bold" Foreground="Black" Name="label15" Width="53" />
+                            <TextBox Canvas.Left="558" Canvas.Top="18" Name="s_fax" TabIndex="9" Width="126" />
+                            <Label Canvas.Left="497" Canvas.Top="52" Content="{lex:LocText Invoice365:CustomerFrame:Email1}"
+                                 FontWeight="Bold" Foreground="Black" Height="28" Name="label16" Width="53" />
+                            <TextBox Canvas.Left="560" Canvas.Top="50" Height="23" Name="s_email" TabIndex="10"
+                                 Width="126" />
+                            <Label Canvas.Left="256" Canvas.Top="46" Content="{lex:LocText Invoice365:CustomerFrame:Zip1}"
+                                 FontWeight="Bold" Foreground="Black" Height="28" Name="label17" Width="46.297" />
+                            <TextBox Canvas.Left="316" Canvas.Top="51" Height="23" Name="s_zip" TabIndex="7" Width="127" />
+                        </Canvas>
+                    </TabItem>
+                </TabControl>
+                <Label FontWeight="Bold" Foreground="Black" Height="28" Name="firstNameLabel" Width="63"
+                     Grid.ColumnSpan="2" Margin="273,46,73,194">
+                    <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:FirstName1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Label>
+                <TextBox Height="23" Name="firstName" TabIndex="2" Width="129" Grid.Column="1" Grid.ColumnSpan="2"
+                     Margin="46,42,172,203" />
+                <Label FontWeight="Bold" Foreground="Black" Name="lastNameLabel" Width="63" Grid.Column="2"
+                     Margin="98,48,84,204">
+                    <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:LastName1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Label>
+                <TextBox Name="lastName" TabIndex="3" Width="131" Grid.Column="2" Grid.ColumnSpan="2"
+                     Margin="178,44,152,202" />
+                <Label FontWeight="Bold" Foreground="Black" Name="label5" Width="53" Margin="34,43,220,203">
+                    <LocText ResourceIdentifierKey="Invoice365:CustomerFrame:Phone1" xmlns="http://schemas.root-project.org/xaml/presentation" />
+                </Label>
+                <my:WindowsFormsHost Height="20.775" Name="phoneCBHost" xmlns:my="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration" TabIndex="1" Margin="91,42,85,0" VerticalAlignment="Top" Width="131">
+                    <wf:ComboBox SelectedValueChanged="phoneCB_SelectedValueChanged" AutoCompleteMode="SuggestAppend" AutoCompleteSource="ListItems" x:Name="phone" TabIndex="1" AllowDrop="True" Margin="162,58,197,0"></wf:ComboBox>
+                </my:WindowsFormsHost>
+                <Grid.Background>
+                    <SolidColorBrush />
+                </Grid.Background>
+            </Grid>
+        </Viewbox>
+    </DockPanel>
+    <Page.Background>
+        <SolidColorBrush />
+    </Page.Background>
+</local:Inv365Sortable>
